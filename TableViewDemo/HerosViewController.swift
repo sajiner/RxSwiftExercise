@@ -23,7 +23,7 @@ class HerosViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+       
         heroVM.herosVariable.asObservable().bindTo(tableView.rx.items(cellIdentifier: "HeroCellID", cellType: UITableViewCell.self)){ (row, hero, cell) in
             cell.textLabel?.text = hero.name
             cell.detailTextLabel?.text = hero.intro
@@ -33,6 +33,7 @@ class HerosViewController: UIViewController {
         tableView.rx.modelSelected(Hero.self).subscribe(onNext: { (hero) in
             print(hero.name)
         }).addDisposableTo(bag)
+        
         
     }
 
